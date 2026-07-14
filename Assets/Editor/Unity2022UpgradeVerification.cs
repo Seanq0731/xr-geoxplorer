@@ -7,7 +7,7 @@ using UnityEngine;
 [InitializeOnLoad]
 public static class Unity2022UpgradeVerification
 {
-    private const string ScenePath = "Assets/Scenes/GeoXShared.unity";
+    private const string ScenePath = Scenes.GeoXSharedPath;
     private const double PlayModeDurationSeconds = 30.0d;
     private const string ActiveKey = "Unity2022UpgradeVerification.Active";
     private const string StartedAtKey = "Unity2022UpgradeVerification.StartedAt";

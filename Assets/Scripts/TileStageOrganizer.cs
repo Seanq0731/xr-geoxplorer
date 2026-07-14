@@ -29,7 +29,7 @@ public class TileStageOrganizer : MonoBehaviour
     public void OrganizeTileStage()
     {
         Bounds tileStageBounds = GetChildRendererBounds(this.gameObject);
-        //GameObject[] gos = GameObject.FindGameObjectsWithTag("flagPrime");
+        //GameObject[] gos = GameObject.FindGameObjectsWithTag(Tags.FlagPrime);
         //foreach (var go in gos)
         //{
         //    RaycastHit hit;
@@ -46,14 +46,14 @@ public class TileStageOrganizer : MonoBehaviour
     Bounds GetChildRendererBounds(GameObject go)
     {
         MeshFilter[] renderers = go.GetComponentsInChildren<MeshFilter>();
-        
+
 
         if (renderers.Length > 0)
         {
             Bounds bounds = renderers[0].mesh.bounds;
             for (int i = 1, ni = renderers.Length; i < ni; i++)
             {
-                if (renderers[i].tag == "MapTile" )
+                if (renderers[i].tag == Tags.MapTile )
                 {
                     bounds.Encapsulate(renderers[i].mesh.bounds);
                 }

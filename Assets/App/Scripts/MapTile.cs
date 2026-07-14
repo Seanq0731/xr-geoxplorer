@@ -105,7 +105,7 @@ public class MapTile : DynamicTextureDownloader
             }
         }
 
-		
+
         _downloader = new WWW(urlData);
         IsDownloading = true;
     }
@@ -173,14 +173,14 @@ public class MapTile : DynamicTextureDownloader
         Transform[] labelTrans = GetComponentsInChildren<Transform>();
         for (int i = 1; i < labelTrans.Length; i++)
         {
-            if (labelTrans[i].tag != "flag")
+            if (labelTrans[i].tag != Tags.Flag)
             {
-                if (labelTrans[i].tag != "flagPrime")
+                if (labelTrans[i].tag != Tags.FlagPrime)
                 {
                     labelTrans[i].localPosition = new Vector3(labelTrans[i].localPosition.x, meshYpos, labelTrans[i].localPosition.z);
                 }
             }
-            
+
         }
 
         GameObject.Find("TileStage").GetComponent<TileStageOrganizer>().mapTilesLoaded++;

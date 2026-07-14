@@ -49,7 +49,7 @@ public class CreateASA : MonoBehaviour
                 anchorLabel.text = FindObjectOfType<FirebaseExchanger>().anchorName;
             }
 
-            GameObject.FindGameObjectWithTag("NetworkRoom").GetComponent<LobbyManager>().OnAnchorSuccessful(this.gameObject);
+            GameObject.FindGameObjectWithTag(Tags.NetworkRoom).GetComponent<LobbyManager>().OnAnchorSuccessful(this.gameObject);
         }
     }
 
@@ -61,14 +61,14 @@ public class CreateASA : MonoBehaviour
 
         // If the cloud portion of the anchor hasn't been created yet, create it
         if (nativeAnchor.CloudAnchor == null) { nativeAnchor.NativeToCloud(); }
-        
+
         CloudSpatialAnchor cloudAnchor = nativeAnchor.CloudAnchor;
 
         cloudAnchor.Expiration = DateTimeOffset.Now.AddHours(24);
 
         feedback.text = "Created cloud anchor";
 
-        
+
         while (!GetComponent<SpatialAnchorManager>().IsReadyForCreate)
         {
             await Task.Delay(330);

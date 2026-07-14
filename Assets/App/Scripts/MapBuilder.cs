@@ -37,7 +37,7 @@ public class MapBuilder : MonoBehaviour
     public void ShowMap()
     {
         //_mapTiles = new List<MapTile>();
-        GameObject[] flags = GameObject.FindGameObjectsWithTag("flag");
+        GameObject[] flags = GameObject.FindGameObjectsWithTag(Tags.Flag);
         if (flags.Length > 0)
         {
             foreach (var flag in flags)
@@ -46,7 +46,7 @@ public class MapBuilder : MonoBehaviour
             }
         }
 
-        GameObject[] primeFlags = GameObject.FindGameObjectsWithTag("flagPrime");
+        GameObject[] primeFlags = GameObject.FindGameObjectsWithTag(Tags.FlagPrime);
         if (primeFlags.Length > 0)
         {
             foreach (var flag in primeFlags)
@@ -58,10 +58,10 @@ public class MapBuilder : MonoBehaviour
 
         LatLabel.text = "Latitude: " + Latitude.ToString();
         LonLabel.text = "Longitude: " + Longitude.ToString();
-        _centerTile = new TileInfo(new WorldCoordinate { Lat = Latitude, Lon = Longitude }, 
+        _centerTile = new TileInfo(new WorldCoordinate { Lat = Latitude, Lon = Longitude },
             ZoomLevel, MapTileSize);
         LoadTiles();
-        
+
     }
 
     private void LoadTiles(bool forceReload = false)
@@ -141,7 +141,7 @@ public class MapBuilder : MonoBehaviour
                 //}
             }
         }
-        
+
     }
 
     private MapTile GetOrCreateTile(int x, int y, int i)
@@ -156,7 +156,7 @@ public class MapBuilder : MonoBehaviour
         var mapTile = Instantiate(MapTilePrefab, transform);
         Renderer[] rends = mapTile.GetComponentsInChildren<Renderer>();
 
-        
+
         int tileNumberInt = Mathf.FloorToInt(MapSize / 2);
 
         for (int j = 1; j < 16; j++)
@@ -253,32 +253,32 @@ public class MapBuilder : MonoBehaviour
                 }
             }
         }
-        
+
             //rends[4].enabled = true;
             //rends[4 + 8].enabled = true;
-        
-       
+
+
             //rends[1].enabled = true;
             //rends[1 + 8].enabled = true;
-        
-       
+
+
             //rends[5].enabled = true;
             //rends[5 + 8].enabled = true;
-        
-       
+
+
             //rends[6].enabled = true;
             //rends[6 + 8].enabled = true;
-        
-        
+
+
             //rends[3].enabled = true;
             //rends[3 + 8].enabled = true;
-        
-        
+
+
             //rends[7].enabled = true;
             //rends[8].enabled = true;
             //rends[7 + 8].enabled = true;
             //rends[8 + 8].enabled = true;
-        
+
 
 
         mapTile.transform.localPosition = new Vector3(MapTileSize * x - MapTileSize / 2, 0, MapTileSize * y + MapTileSize / 2);

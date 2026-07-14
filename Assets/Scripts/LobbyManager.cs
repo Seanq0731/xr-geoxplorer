@@ -35,7 +35,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     public GameObject downloadIndicatorText;
 
-    private string assetLoaderName = "AssetBundleLoader";
+    private string assetLoaderName = Tags.AssetBundleLoader;
     private Vector3 ModuleLocations = new Vector3(0, 0, 0);
     private object[] customInitData;
     private object[] userInitData;
@@ -470,7 +470,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
             PhotonNetwork.Destroy(gObject);
         }
 
-        if (GameObject.FindGameObjectsWithTag("AssetBundle").Length == 0)
+        if (GameObject.FindGameObjectsWithTag(Tags.AssetBundle).Length == 0)
         {
             TableAnchor.instance.GetComponent<PlanetManager>().geoSlider.SetActive(false);
         }
@@ -478,7 +478,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     public void ResetAllAssetBundles()
     {
-        GameObject[] gos = GameObject.FindGameObjectsWithTag("AssetBundleLoader");
+        GameObject[] gos = GameObject.FindGameObjectsWithTag(Tags.AssetBundleLoader);
         foreach (var go in gos)
         {
             go.GetComponent<AssetBundleInteraction>().OnReset();

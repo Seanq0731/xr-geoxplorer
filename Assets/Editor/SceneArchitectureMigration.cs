@@ -11,8 +11,8 @@ public static class SceneArchitectureMigration
     private const string BasePrefabPath = PrefabFolder + "/PlatformRoot.prefab";
     private const string QuestPrefabPath = PrefabFolder + "/PlatformRoot.Quest3.prefab";
     private const string MobilePrefabPath = PrefabFolder + "/PlatformRoot.Mobile.prefab";
-    private const string GeoXSharedScenePath = "Assets/Scenes/GeoXShared.unity";
-    private const string MobileScenePath = "Assets/Scenes/_legacy/MobileMRTK.unity";
+    private const string GeoXSharedScenePath = Scenes.GeoXSharedPath;
+    private const string MobileScenePath = Scenes.MobileLegacyPath;
 
     private static readonly HashSet<string> GeneratedMrtkServiceRootNames = new HashSet<string>
     {

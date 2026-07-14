@@ -27,7 +27,7 @@ public class FindASA : MonoBehaviour
         anchorLocateCriteria = new AnchorLocateCriteria();
 
         await Initialize();
-        
+
     }
 
     public async Task Initialize()
@@ -95,7 +95,7 @@ public class FindASA : MonoBehaviour
             GetComponent<SpatialAnchorManager>().StopSession();
             feedback.text = "Stopped Session";
 
-            GameObject.FindGameObjectWithTag("NetworkRoom").GetComponent<LobbyManager>().OnAnchorSuccessful(this.gameObject);
+            GameObject.FindGameObjectWithTag(Tags.NetworkRoom).GetComponent<LobbyManager>().OnAnchorSuccessful(this.gameObject);
         }
     }
 
