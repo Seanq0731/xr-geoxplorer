@@ -81,7 +81,7 @@ public class FirebaseExchanger : MonoBehaviour
         byte[] buffer = Encoding.UTF8.GetBytes(json);
 
         bool uploadSucceeded = false;
-        using (UnityWebRequest uwr = UnityWebRequest.Put("https://flasasharing.firebaseio.com/anchors.json", buffer))
+        using (UnityWebRequest uwr = UnityWebRequest.Put(RemoteConfig.Current.FirebaseAnchorsUrl, buffer))
         {
             uwr.SetRequestHeader("Content-Type", "application/json");
             yield return uwr.SendWebRequest();
@@ -112,7 +112,7 @@ public class FirebaseExchanger : MonoBehaviour
             if (anchor.name == anchorName)
             {
                 Debug.Log("Found " + anchor.name + ": " + anchor.identifier);
-                anchorToFind = anchor.identifier;   
+                anchorToFind = anchor.identifier;
             }
         }
         return anchorToFind;
@@ -153,8 +153,8 @@ public class FirebaseExchanger : MonoBehaviour
             var fetchedAnchors = new List<AzureSpatialAnchorObject>();
             bool fetchSucceeded = false;
 
-            feedback.text = string.Format("{0}\n{1}", feedback.text, "Downloading from https://flasasharing.firebaseio.com/anchors.json");
-            using (UnityWebRequest uwr = UnityWebRequest.Get("https://flasasharing.firebaseio.com/anchors.json"))
+            feedback.text = string.Format("{0}\n{1}", feedback.text, "Downloading from " + RemoteConfig.Current.FirebaseAnchorsUrl);
+            using (UnityWebRequest uwr = UnityWebRequest.Get(RemoteConfig.Current.FirebaseAnchorsUrl))
             {
                 yield return uwr.SendWebRequest();
 

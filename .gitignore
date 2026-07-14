@@ -118,3 +118,7 @@ InitTestScene*.unity*
 
 # Auto-generated cache in Assets folder
 /[Aa]ssets/[Ss]ceneDependencyCache*
+
+# GeoXplorer RemoteConfig prod secrets / build-injected variants
+**/RemoteConfig.*.local.asset
+**/RemoteConfig.*.local.asset.meta
