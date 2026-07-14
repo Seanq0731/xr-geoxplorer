@@ -5,6 +5,7 @@ using Microsoft.Azure.SpatialAnchors;
 using Microsoft.Azure.SpatialAnchors.Unity;
 using TMPro;
 using UnityEngine;
+using System;
 
 public class FindASA : MonoBehaviour
 {
@@ -18,7 +19,7 @@ public class FindASA : MonoBehaviour
     bool anchorLocatedAndPlaced;
 
     // Start is called before the first frame update
-    async void Start()
+    void Start()
     {
         anchorLocatedAndPlaced = false;
         //anchorExchanger.WatchKeys("https://flsharingservice.azurewebsites.net/api/anchors");
@@ -26,8 +27,23 @@ public class FindASA : MonoBehaviour
         GetComponent<SpatialAnchorManager>().AnchorLocated += CloudAnchor_Located;
         anchorLocateCriteria = new AnchorLocateCriteria();
 
-        await Initialize();
-        
+        _ = RunStartAsync();
+    }
+
+    async Task RunStartAsync()
+    {
+        try
+        {
+            await Initialize();
+        }
+        catch (Exception ex)
+        {
+            Debug.LogException(ex);
+            if (feedback != null)
+            {
+                feedback.text = ex.ToString();
+            }
+        }
     }
 
     public async Task Initialize()

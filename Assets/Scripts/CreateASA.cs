@@ -14,10 +14,26 @@ public class CreateASA : MonoBehaviour
     CloudSpatialAnchor currentCloudAnchor;
     CloudSpatialAnchorSession cloudSpatialAnchorSession;
 
-    async void Start()
+    void Start()
     {
         this.gameObject.AddComponent<CloudNativeAnchor>();
-        await Initialize();
+        _ = RunStartAsync();
+    }
+
+    async Task RunStartAsync()
+    {
+        try
+        {
+            await Initialize();
+        }
+        catch (Exception ex)
+        {
+            Debug.LogException(ex);
+            if (feedback != null)
+            {
+                feedback.text = ex.ToString();
+            }
+        }
     }
 
     public async Task Initialize()
@@ -61,14 +77,14 @@ public class CreateASA : MonoBehaviour
 
         // If the cloud portion of the anchor hasn't been created yet, create it
         if (nativeAnchor.CloudAnchor == null) { nativeAnchor.NativeToCloud(); }
-        
+
         CloudSpatialAnchor cloudAnchor = nativeAnchor.CloudAnchor;
 
         cloudAnchor.Expiration = DateTimeOffset.Now.AddHours(24);
 
         feedback.text = "Created cloud anchor";
 
-        
+
         while (!GetComponent<SpatialAnchorManager>().IsReadyForCreate)
         {
             await Task.Delay(330);
